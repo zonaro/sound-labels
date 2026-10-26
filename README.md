@@ -22,10 +22,15 @@ HDMI/DisplayPort audio endpoints often look identical in desktop sound menus. So
 - **Editar dispositivo:** name, icon picker, hardware metadata and restore.
 - **Aplicativos:** inspect active playback streams and change their output routing; persistence where supported.
 - **Perfis:** create and apply saved user audio configurations.
-- **Configurações:** autostart, system sync, notifications, theme and language.
+- **Configurações:** autostart, system sync, notifications, **light/dark/automatic (system) theme**, and **pt-BR/en/es localization** with automatic OS locale or manual language choice.
 - **Saída de Áudio:** compact quick switcher with device icons.
 
 Features must be implemented and tested, not merely decorative mockup screens. Host-specific limitations (particularly GNOME tray and stream routing) must be documented.
+
+## Mandatory global UX requirements
+- Theme: **Automatic (follow OS)**, **Light**, **Dark**, selectable and persistent; auto mode reacts to system changes.
+- Localization: **Português (Brasil)**, **English**, **Español**, using Flutter ARB/gen-l10n, system locale detection, user override and fallback.
+- Both requirements apply to **all** MVP screens, quick switcher, dialogs, errors and notifications.
 
 ## Architecture
 Flutter UI → Dart application services → replaceable Linux audio adapter → PipeWire/WirePlumber. Prefer a direct, supported interface where feasible; evaluate `wpctl`, `pw-dump`, D-Bus and WirePlumber configuration rules before selecting the production mechanism. Do not assume that a node rename always changes GNOME/KDE labels.
