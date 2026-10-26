@@ -35,3 +35,7 @@ Start with native Linux packaging/dev workflow. Research Flatpak permissions and
 ## Tests
 Unit: identifiers, collision handling, validation, serialization, rollback.
 Integration: mock backend and real Fedora PipeWire/WirePlumber; verify GNOME and KDE display labels, reboot/hotplug.
+
+
+## System accent color (MVP)
+Follow the configured desktop accent color on GNOME and KDE when detectable, ideally through supported XDG Desktop Portal appearance settings. Update on changes when possible. If unavailable, fall back to Sound Labels purple. Apply consistently in light and dark modes with accessible contrast. See issue #28.
