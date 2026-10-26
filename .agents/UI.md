@@ -30,4 +30,6 @@ Follow the configured desktop accent color on GNOME and KDE when detectable, ide
 
 
 ## Detailed text-only implementation specification
-**Required reading:** [UI_IMPLEMENTATION.md](UI_IMPLEMENTATION.md). The approved mockup is uploaded by the owner in root `assets/`; inspect that folder to identify the image filename. Agents without vision should implement the complete screen-by-screen text specification instead of guessing from the picture. The icon SVG is a separate asset.
+**Required reading:** [UI_IMPLEMENTATION.md](UI_IMPLEMENTATION.md). The approved mockup is uploaded by the owner in root `assets/`; use `assets/concept.png`. Agents without vision should implement the complete screen-by-screen text specification instead of guessing from the picture. The icon SVG is a separate asset.
+
+**Approved visual reference:** [`assets/concept.png`](../assets/concept.png). This is the canonical UI mockup; agents with image support should inspect it, and text-only agents must follow `UI_IMPLEMENTATION.md`.
