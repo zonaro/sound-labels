@@ -52,3 +52,9 @@ Target PipeWire + WirePlumber on Fedora, Ubuntu, Arch and openSUSE where install
 Start from an issue, keep changes focused, add tests and document host-side effects. See [.agents/CONTRIBUTING.md](.agents/CONTRIBUTING.md).
 
 License: **not yet selected**; choose and add a LICENSE file before accepting external contributions.
+
+
+## Mandatory appearance and language support (MVP)
+- Theme modes: Automatic (follow system), Light, Dark. Manual choice persists; automatic tracks system changes.
+- Languages: Brazilian Portuguese (pt-BR), English (en), Spanish (es). Detect system locale, allow manual override, use Flutter ARB/gen-l10n and fallback.
+- Applies to all screens, dialogs, quick switcher, notifications and errors. See issues #26 and #27.
