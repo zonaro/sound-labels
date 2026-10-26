@@ -14,7 +14,8 @@ HDMI/DisplayPort audio endpoints often look identical in desktop sound menus. So
 - Rename, reset and persist labels **only after validating that desktop selectors reflect the changes**.
 - Choose device icons in the first MVP: automatic suggestions, manual picker, preview and reset. Icons persist in Sound Labels; native GNOME/KDE icon changes are subject to feasibility testing.
 - Handle hotplug, restarts and missing devices gracefully.
-- Never change the default device or audio routing implicitly.
+- Show the current default output and input, and let users **explicitly switch the system-default audio output/input from the app** (initial MVP).
+- Observe external default changes and hotplug; do not silently change defaults on startup. Switching the default may not move already-running application streams.
 
 ## Architecture
 Flutter UI → Dart application services → replaceable Linux audio adapter → PipeWire/WirePlumber. Prefer a direct, supported interface where feasible; evaluate `wpctl`, `pw-dump`, D-Bus and WirePlumber configuration rules before selecting the production mechanism. Do not assume that a node rename always changes GNOME/KDE labels.
