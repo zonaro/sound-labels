@@ -3,11 +3,14 @@
 ## Layers
 - **Presentation:** Flutter Linux desktop; list of sinks/sources, editing dialogs, state/errors.
 - **Domain:** AudioEndpoint (stable key, node name, description, media class, card, port, availability, original label), LabelOverride, IconOverride and operations (list/apply/reset).
-- **Application:** DiscoveryService, LabelService, PersistenceService, diagnostics.
+- **Application:** DiscoveryService, LabelService, PersistenceService, DefaultDeviceService, diagnostics.
 - **Infrastructure:** AudioBackend interface, PipeWire/WirePlumber implementation, local override store, optional rule generator.
 
 ## Discovery
 Start with `wpctl status`, `wpctl inspect`, `pw-dump` and `pactl list sinks/sources` to inspect actual properties on Fedora. Prototype robust structured data discovery (JSON or supported API) rather than parsing localized human-readable output. Map cards, ports, nodes and EDID metadata where available. Numeric node IDs are transient.
+
+## Default device selection — MVP
+Support reading and explicitly changing the PipeWire/WirePlumber system-default sink and source. Prototype with supported WirePlumber interfaces (e.g. `wpctl set-default`) behind an AudioBackend abstraction. Observe changes made externally and distinguish system default from already-routed streams. Never auto-select a device on launch; handle hotplug, stale IDs and failures with visible feedback.
 
 ## Rename and persistence — must prove
 Research WirePlumber 0.5+ configuration and rules matching appropriate stable node/card/port properties. A display name may come from `node.description`, `device.description` or profile/port metadata depending on desktop. Validate exactly which properties GNOME and KDE show. Different HDMI outputs on one GPU may be profiles/ports of a single card, not simultaneously exposed sinks: model that distinction explicitly.
