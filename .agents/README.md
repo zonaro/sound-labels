@@ -11,5 +11,6 @@ Rules:
 6. Avoid root, privileged daemons, arbitrary shell interpolation and broad filesystem permissions.
 7. Provide meaningful errors and dry-run/previews for any system configuration change.
 8. Prefer Flutter's built-in state management until complexity justifies a package.
-9. Keep UI accessible, keyboard navigable and adaptive. PT-BR and English strings should be externalized.
-10. Each issue must have reproducible acceptance criteria and tests. Do not invent verified integration behavior.
+9. Keep UI accessible, keyboard navigable and adaptive. All user-facing strings must use Flutter localization in pt-BR, English and Spanish. Detect OS locale and support persistent manual override.
+10. Support automatic (system), light and dark theme modes throughout the app, including persistent manual override.
+11. Each issue must have reproducible acceptance criteria and tests. Do not invent verified integration behavior.
