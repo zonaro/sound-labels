@@ -27,3 +27,7 @@ Important: GUI labels must reflect what the host desktop actually uses; do not m
 
 ## System accent color (MVP)
 Follow the configured desktop accent color on GNOME and KDE when detectable, ideally through supported XDG Desktop Portal appearance settings. Update on changes when possible. If unavailable, fall back to Sound Labels purple. Apply consistently in light and dark modes with accessible contrast. See issue #28.
+
+
+## Detailed text-only implementation specification
+**Required reading:** [UI_IMPLEMENTATION.md](UI_IMPLEMENTATION.md). The approved mockup is uploaded by the owner in root `assets/`; inspect that folder to identify the image filename. Agents without vision should implement the complete screen-by-screen text specification instead of guessing from the picture. The icon SVG is a separate asset.
