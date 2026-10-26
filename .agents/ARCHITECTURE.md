@@ -3,11 +3,17 @@
 ## Layers
 - **Presentation:** Flutter Linux desktop; list of sinks/sources, editing dialogs, state/errors.
 - **Domain:** AudioEndpoint (stable key, node name, description, media class, card, port, availability, original label), LabelOverride, IconOverride and operations (list/apply/reset).
-- **Application:** DiscoveryService, LabelService, PersistenceService, DefaultDeviceService, diagnostics.
+- **Application:** DiscoveryService, LabelService, PersistenceService, DefaultDeviceService, StreamRoutingService, UserProfileService, SettingsService, diagnostics.
 - **Infrastructure:** AudioBackend interface, PipeWire/WirePlumber implementation, local override store, optional rule generator.
 
 ## Discovery
 Start with `wpctl status`, `wpctl inspect`, `pw-dump` and `pactl list sinks/sources` to inspect actual properties on Fedora. Prototype robust structured data discovery (JSON or supported API) rather than parsing localized human-readable output. Map cards, ports, nodes and EDID metadata where available. Numeric node IDs are transient.
+
+## Additional approved MVP modules
+- **StreamRoutingService:** discover playback streams and map application streams to sinks, move active streams using supported host APIs; handle stream lifecycle and explicit per-app preferences when feasible.
+- **UserProfileService:** save and activate named user audio configurations, with validation, preview, missing-device handling and rollback. Distinct from ALSA/PipeWire card profiles.
+- **SettingsService:** XDG autostart, live updates, notifications, theme and language; no privileged background service by default.
+- **QuickSwitcher:** compact window or supported desktop integration for fast output selection, with portable fallback where tray support is absent.
 
 ## Default device selection — MVP
 Support reading and explicitly changing the PipeWire/WirePlumber system-default sink and source. Prototype with supported WirePlumber interfaces (e.g. `wpctl set-default`) behind an AudioBackend abstraction. Observe changes made externally and distinguish system default from already-routed streams. Never auto-select a device on launch; handle hotplug, stale IDs and failures with visible feedback.
