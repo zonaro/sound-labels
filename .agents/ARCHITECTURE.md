@@ -2,7 +2,7 @@
 
 ## Layers
 - **Presentation:** Flutter Linux desktop; list of sinks/sources, editing dialogs, state/errors.
-- **Domain:** AudioEndpoint (stable key, node name, description, media class, card, port, availability, original label), LabelOverride and operations (list/apply/reset).
+- **Domain:** AudioEndpoint (stable key, node name, description, media class, card, port, availability, original label), LabelOverride, IconOverride and operations (list/apply/reset).
 - **Application:** DiscoveryService, LabelService, PersistenceService, diagnostics.
 - **Infrastructure:** AudioBackend interface, PipeWire/WirePlumber implementation, local override store, optional rule generator.
 
@@ -13,6 +13,9 @@ Start with `wpctl status`, `wpctl inspect`, `pw-dump` and `pactl list sinks/sour
 Research WirePlumber 0.5+ configuration and rules matching appropriate stable node/card/port properties. A display name may come from `node.description`, `device.description` or profile/port metadata depending on desktop. Validate exactly which properties GNOME and KDE show. Different HDMI outputs on one GPU may be profiles/ports of a single card, not simultaneously exposed sinks: model that distinction explicitly.
 
 Prototype a safe apply/revert mechanism and verify user-visible result, restart, hotplug, multiple identical devices and collisions. If a desktop ignores renamed metadata, expose the limitation instead of claiming universal support.
+
+## Icon architecture
+Icons are a first-release requirement. Store a stable icon identifier per endpoint in app-owned XDG configuration; support auto-detected defaults, custom selection and reset. Render icons in Flutter independently of host audio metadata. Research whether PipeWire icon-name properties affect native GNOME/KDE menus, but do not rely on this for MVP functionality. Validate icon licensing and accessible descriptions.
 
 ## Persistence safety
 App-owned state under XDG_CONFIG_HOME; generated WirePlumber fragments only after compatibility detection. Preserve external configuration. Validate rules before activation, rollback on failure and retain original values for reset. Do not require root.
