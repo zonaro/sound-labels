@@ -10,11 +10,11 @@
 ## Phase 1 — Foundation
 4. Bootstrap Flutter Linux project, architecture and CI.
 5. Implement typed audio discovery adapter and domain models.
-6. Build device list and details UI, including automatic icons and custom icon picker.
+6. Build device management UI with current-default indicators, quick-switch controls, automatic icons and custom icon picker.
 
 ## Phase 2 — MVP
 7. Implement safe rename/reset with backup and rollback, and persist user-selected icons.
-8. Persist mappings across restart/hotplug.
+8. Implement explicit default output/input switching and synchronization with external changes; persist mappings across restart/hotplug.
 9. Add localization, diagnostics and accessibility.
 10. Integration tests on Fedora and at least one non-GNOME desktop, covering labels and app icons. Investigate native desktop icon override support.
 
