@@ -21,4 +21,6 @@ Follow the configured desktop accent color on GNOME and KDE when detectable, ide
 
 
 ## Mandatory visual specification
-Before implementing any Flutter screen, read [UI_IMPLEMENTATION.md](UI_IMPLEMENTATION.md). It provides a complete text-only screen-by-screen blueprint for agents that cannot inspect images. The owner uploaded the approved UI concept under root `assets/`; locate its exact filename in the current repository tree and use it as a visual reference. The logo SVG at `assets/icons/sound-labels.svg` is a different asset. All approved screens are MVP scope.
+Before implementing any Flutter screen, read [UI_IMPLEMENTATION.md](UI_IMPLEMENTATION.md). It provides a complete text-only screen-by-screen blueprint for agents that cannot inspect images. The owner uploaded the approved UI concept under root `assets/`; use the exact file `assets/concept.png` and use it as a visual reference. The logo SVG at `assets/icons/sound-labels.svg` is a different asset. All approved screens are MVP scope.
+
+**Approved visual reference:** [`assets/concept.png`](../assets/concept.png). This is the canonical UI mockup; agents with image support should inspect it, and text-only agents must follow `UI_IMPLEMENTATION.md`.
