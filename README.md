@@ -17,6 +17,16 @@ HDMI/DisplayPort audio endpoints often look identical in desktop sound menus. So
 - Show the current default output and input, and let users **explicitly switch the system-default audio output/input from the app** (initial MVP).
 - Observe external default changes and hotplug; do not silently change defaults on startup. Switching the default may not move already-running application streams.
 
+## All approved mockup screens are MVP scope
+- **Dispositivos:** outputs and inputs, rename, icons, default switching.
+- **Editar dispositivo:** name, icon picker, hardware metadata and restore.
+- **Aplicativos:** inspect active playback streams and change their output routing; persistence where supported.
+- **Perfis:** create and apply saved user audio configurations.
+- **Configurações:** autostart, system sync, notifications, theme and language.
+- **Saída de Áudio:** compact quick switcher with device icons.
+
+Features must be implemented and tested, not merely decorative mockup screens. Host-specific limitations (particularly GNOME tray and stream routing) must be documented.
+
 ## Architecture
 Flutter UI → Dart application services → replaceable Linux audio adapter → PipeWire/WirePlumber. Prefer a direct, supported interface where feasible; evaluate `wpctl`, `pw-dump`, D-Bus and WirePlumber configuration rules before selecting the production mechanism. Do not assume that a node rename always changes GNOME/KDE labels.
 
