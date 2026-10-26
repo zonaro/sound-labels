@@ -12,6 +12,7 @@ HDMI/DisplayPort audio endpoints often look identical in desktop sound menus. So
 - Detect PipeWire audio sinks and sources, their ports and relevant properties.
 - Show original description, proposed custom label, connection state and technical identifier.
 - Rename, reset and persist labels **only after validating that desktop selectors reflect the changes**.
+- Choose device icons in the first MVP: automatic suggestions, manual picker, preview and reset. Icons persist in Sound Labels; native GNOME/KDE icon changes are subject to feasibility testing.
 - Handle hotplug, restarts and missing devices gracefully.
 - Never change the default device or audio routing implicitly.
 
