@@ -12,6 +12,8 @@ Candidates (pub.dev, checked 2026-10-26):
 
 Layout: header, current default output/input quick selectors, two grouped sections (Outputs / Inputs), row with device type icon, editable alias, original system description, availability and current-default indicator. Each connected device can be selected as the system default; Edit remains a separate action. Edit dialog with icon picker, automatic icon suggestion, preview, Save, Cancel, Restore original. Clear empty/error states, keyboard navigation, contrast, light/dark modes, responsive widths. **Icons are required in MVP:** choose from bundled accessible symbols (TV, monitor, speakers, headphones, microphone, USB, Bluetooth, generic), save custom selections per endpoint and provide reset-to-auto. Native GNOME/KDE menu icon override is not guaranteed.
 
+**Approved MVP screens (all required):** Dispositivos, Editar Dispositivo, Aplicativos (per-app audio routing), Perfis (saved configurations), Configurações (startup, sync, notifications, theme, language), and compact Saída de Áudio quick switcher. All must be functional, not placeholder pages. The visual mockup is an approved direction; synthetic device data are examples, not product requirements.
+
 Important: changing system default is explicit; already-running app streams may not move. Listen for changes made outside Sound Labels.
 
 Important: GUI labels must reflect what the host desktop actually uses; do not merely rename rows inside the app.
