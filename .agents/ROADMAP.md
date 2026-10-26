@@ -31,3 +31,9 @@
 
 ## Later
 EDID-assisted friendly names and PulseAudio fallback only if independently justified. **Per-app routing, saved profiles, settings and compact switcher are all MVP requirements.** **Device icons are required for MVP**; native desktop icon overrides depend on verified support.
+
+
+## Mandatory appearance and language support (MVP)
+- Theme modes: Automatic (follow system), Light, Dark. Manual choice persists; automatic tracks system changes.
+- Languages: Brazilian Portuguese (pt-BR), English (en), Spanish (es). Detect system locale, allow manual override, use Flutter ARB/gen-l10n and fallback.
+- Applies to all screens, dialogs, quick switcher, notifications and errors. See issues #26 and #27.
