@@ -17,3 +17,9 @@ Layout: header, current default output/input quick selectors, two grouped sectio
 Important: changing system default is explicit; already-running app streams may not move. Listen for changes made outside Sound Labels.
 
 Important: GUI labels must reflect what the host desktop actually uses; do not merely rename rows inside the app.
+
+
+## Mandatory appearance and language support (MVP)
+- Theme modes: Automatic (follow system), Light, Dark. Manual choice persists; automatic tracks system changes.
+- Languages: Brazilian Portuguese (pt-BR), English (en), Spanish (es). Detect system locale, allow manual override, use Flutter ARB/gen-l10n and fallback.
+- Applies to all screens, dialogs, quick switcher, notifications and errors. See issues #26 and #27.
