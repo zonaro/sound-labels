@@ -10,6 +10,6 @@ Candidates (pub.dev, checked 2026-10-26):
 
 **Recommended spike:** Flutter Material 3 + adwaita_gtk, small reusable components matching GNOME HIG. Compare libadwaita widgets only if current Flutter compatibility is demonstrated. Avoid hard dependency on GNOME APIs.
 
-Layout: header, two grouped sections (Outputs / Inputs), row with device type icon, editable alias, original system description, availability. Edit dialog with preview, Save, Cancel, Restore original. Clear empty/error states, keyboard navigation, contrast, light/dark modes, responsive widths. Icons optional and secondary to names.
+Layout: header, two grouped sections (Outputs / Inputs), row with device type icon, editable alias, original system description, availability. Edit dialog with icon picker, automatic icon suggestion, preview, Save, Cancel, Restore original. Clear empty/error states, keyboard navigation, contrast, light/dark modes, responsive widths. **Icons are required in MVP:** choose from bundled accessible symbols (TV, monitor, speakers, headphones, microphone, USB, Bluetooth, generic), save custom selections per endpoint and provide reset-to-auto. Native GNOME/KDE menu icon override is not guaranteed.
 
 Important: GUI labels must reflect what the host desktop actually uses; do not merely rename rows inside the app.
