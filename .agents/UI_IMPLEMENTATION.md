@@ -1,6 +1,6 @@
 # Sound Labels — UI Implementation Blueprint (text-only specification)
 
-> **Status:** approved visual direction, mandatory MVP. This document is deliberately complete enough for agents without image vision. The approved UI concept image was uploaded by the project owner somewhere under the repository's `assets/` directory. Inspect the current `assets/` tree to identify its **exact filename** before coding; do not confuse the mockup image with `assets/icons/sound-labels.svg` (the app icon). The text below is authoritative for functional scope. For fine-grained illustration/spacing details, the concept image is the visual reference. If the two conflict on real behavior, prioritize this spec and issue #29.
+> **Status:** approved visual direction, mandatory MVP. This document is deliberately complete enough for agents without image vision. The approved UI concept image was uploaded by the project owner at `assets/concept.png`. The exact image path is **`assets/concept.png`**; do not confuse the mockup image with `assets/icons/sound-labels.svg` (the app icon). The text below is authoritative for functional scope. For fine-grained illustration/spacing details, the concept image is the visual reference. If the two conflict on real behavior, prioritize this spec and issue #29.
 
 ## 1. Overall visual language
 
@@ -93,3 +93,6 @@ Use domain services for endpoint discovery, defaults, aliases, routing, profile 
 - [ ] Layout adapts to smaller windows, works with keyboard and screen readers.
 - [ ] GNOME/KDE compatibility and fallback behavior tested with real devices; no unsupported claims.
 - [ ] UI tests/golden tests for all pages in light and dark, including multiple accent colors and all three locales.
+
+
+**Approved visual reference:** [`assets/concept.png`](../assets/concept.png). This is the canonical UI mockup; agents with image support should inspect it, and text-only agents must follow `UI_IMPLEMENTATION.md`.
