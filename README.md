@@ -2,7 +2,25 @@
 
 A lightweight, desktop-agnostic Linux application to identify and rename audio inputs and outputs with persistent, human-friendly labels.
 
-> **Status:** planning / pre-alpha. No working renaming functionality has been implemented yet.
+> **Status:** Flutter Linux pre-alpha source code is available. It has **not been compiled or manually tested** yet. Device aliases and icons are local to Sound Labels by default; native GNOME/KDE renaming is an experimental opt-in, not a verified promise.
+
+## Run locally
+
+Install current Flutter stable (Dart 3.9+), enable Linux desktop, and ensure your system has PipeWire, WirePlumber, `pipewire-pulse`, `pactl` (usually `pulseaudio-utils`) and the Flutter Linux GTK development dependencies. Then:
+
+```bash
+flutter pub get
+flutter gen-l10n
+flutter run -d linux
+```
+
+The separate compact output window can be opened from the built executable:
+
+```bash
+./build/linux/x64/debug/bundle/sound_labels --quick
+```
+
+Build a release locally with `flutter build linux --release` when ready. No CI builds or tests were executed when this initial source was written. See [development notes](docs/DEVELOPMENT.md) for platform integration and manual validation.
 
 ## Why
 HDMI/DisplayPort audio endpoints often look identical in desktop sound menus. Sound Labels aims to display labels such as **Living Room TV**, **LG Monitor** and **USB Microphone**, without replacing the system's audio server.
@@ -11,7 +29,7 @@ HDMI/DisplayPort audio endpoints often look identical in desktop sound menus. So
 - Linux desktop app built with Flutter, responsive and keyboard-accessible.
 - Detect PipeWire audio sinks and sources, their ports and relevant properties.
 - Show original description, proposed custom label, connection state and technical identifier.
-- Rename, reset and persist labels **only after validating that desktop selectors reflect the changes**.
+- Save, restore and persist local aliases; optionally generate an isolated, experimental WirePlumber 0.5+ user rule for GNOME/KDE validation.
 - Choose device icons in the first MVP: automatic suggestions, manual picker, preview and reset. Icons persist in Sound Labels; native GNOME/KDE icon changes are subject to feasibility testing.
 - Handle hotplug, restarts and missing devices gracefully.
 - Show the current default output and input, and let users **explicitly switch the system-default audio output/input from the app** (initial MVP).
@@ -43,7 +61,7 @@ See [agent guidance](.agents/README.md), [architecture](.agents/ARCHITECTURE.md)
 GNOME HIG / libadwaita-inspired, not GNOME-dependent. Evaluate [adwaita_gtk](https://pub.dev/packages/adwaita_gtk) for modern Material 3 colors and [libadwaita](https://pub.dev/packages/libadwaita) for widgets; the latter has older releases and must pass a Flutter compatibility spike. [yaru](https://pub.dev/packages/yaru) is actively developed but Ubuntu-oriented. No dependency is final until tested.
 
 ## Development
-Prerequisites: current stable Flutter with Linux desktop support, a Linux workstation with PipeWire and WirePlumber, and their CLI inspection tools. Bootstrap the Flutter app in a dedicated issue; do not assume the app already builds.
+The Flutter application and Linux runner are now included in the repository. The initial source has not been compiled by the authoring agent; report build errors and platform results as issues or PR feedback. Use `flutter analyze` and `flutter test` at your discretion locally; only manual testing can establish host-side audio behavior.
 
 ## Compatibility
 Target PipeWire + WirePlumber on Fedora, Ubuntu, Arch and openSUSE where installed. PulseAudio-only systems are out of MVP scope. Flatpak support is a research task because access to user configuration and host services needs explicit design.
@@ -51,7 +69,7 @@ Target PipeWire + WirePlumber on Fedora, Ubuntu, Arch and openSUSE where install
 ## Contributing
 Start from an issue, keep changes focused, add tests and document host-side effects. See [.agents/CONTRIBUTING.md](.agents/CONTRIBUTING.md).
 
-License: **not yet selected**; choose and add a LICENSE file before accepting external contributions.
+License: MIT, see [LICENSE](LICENSE).
 
 
 ## Mandatory appearance and language support (MVP)
