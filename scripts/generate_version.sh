@@ -11,7 +11,7 @@
 # Exemplo: 26.302.1430  =>  29/out/2026, 14:30
 set -euo pipefail
 
-VERSION=$(date +%y.%j.%H%m)
+VERSION=$(date +%y.%j.%H%M)
 echo "Versao gerada para a compilacao: $VERSION"
 
 # Escreve o arquivo Dart com a constante da versao (sobrescrito a cada build).
