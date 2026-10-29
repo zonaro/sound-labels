@@ -13,3 +13,4 @@ coverage/
 .vscode/
 lib/l10n/app_localizations.dart
 lib/l10n/app_localizations_*.dart
+lib/src/app_version.dart

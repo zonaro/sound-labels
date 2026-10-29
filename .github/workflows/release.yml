@@ -1,0 +1,100 @@
+name: Publish Sound Labels Release (AppImage)
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag do release (ex: v26.302.1430). Deixe vazio para usar a versao gerada.'
+        required: false
+        default: ''
+      release_notes:
+        description: 'Notas do release (opcional).'
+        required: false
+        default: ''
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar dependencias do sistema (Flutter Linux + AppImage)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libgtk-3-dev \
+            libblkid-dev \
+            liblzma-dev \
+            libgdk-pixbuf2.0-dev \
+            libegl1-mesa-dev \
+            libgles2 \
+            clang \
+            cmake \
+            ninja-build \
+            pkg-config \
+            libgtk-3-bin
+
+      - name: Instalar Flutter (estavel)
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.47.7'
+          channel: 'stable'
+
+      - name: Gerar versao da compilacao (yy.DDD.HHmm)
+        id: version
+        run: |
+          chmod +x scripts/generate_version.sh
+          source scripts/generate_version.sh
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Baixar dependencias Flutter
+        run: flutter pub get
+
+      - name: Compilar app para Linux desktop
+        run: flutter build linux --build-name="${{ steps.version.outputs.version }}"
+
+      - name: Baixar linuxdeploy e appimagetool
+        run: |
+          mkdir -p bin
+          curl -sSL -o bin/linuxdeploy \
+            "https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage"
+          curl -sSL -o bin/appimagetool \
+            "https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage"
+          chmod +x bin/linuxdeploy bin/appimagetool
+          export PATH="$PWD/bin:$PATH"
+
+      - name: Montar AppDir para AppImage
+        run: |
+          chmod +x scripts/package_appimage.sh
+          scripts/package_appimage.sh "${{ steps.version.outputs.version }}"
+
+      - name: Gerar AppImage com linuxdeploy
+        run: |
+          export PATH="$PWD/bin:$PATH"
+          export ARCH=x86_64
+          bin/linuxdeploy \
+            --appdir AppDir \
+            --output appimage
+
+      - name: Renomear AppImage com a versao
+        run: |
+          mv "Sound Labels-${{ steps.version.outputs.version }}-x86_64.AppImage" \
+             "sound_labels-${{ steps.version.outputs.version }}.AppImage" 2>/dev/null || \
+          mv "sound_labels-${{ steps.version.outputs.version }}-x86_64.AppImage" \
+             "sound_labels-${{ steps.version.outputs.version }}.AppImage" 2>/dev/null || true
+          ls -la *.AppImage
+
+      - name: Criar release no GitHub
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ inputs.tag_name || steps.version.outputs.version }}
+          name: "Sound Labels ${{ steps.version.outputs.version }}"
+          body: |
+            Release gerado manualmente via workflow.
+
+            Versao da compilacao: ${{ steps.version.outputs.version }}
+            ${{ inputs.release_notes }}
+          files: "sound_labels-*.AppImage"
+          draft: false
+          prerelease: false
