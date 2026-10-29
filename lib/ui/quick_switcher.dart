@@ -55,7 +55,7 @@ class QuickSwitcher extends StatelessWidget {
                       enabled: output.available && !controller.busy &&
                           controller.audioError == null,
                       leading: EndpointGlyph(symbol: controller.displaySymbol(output)),
-                      title: Text(controller.displayName(output),
+                      title: Text(controller.displayName(output) ?? l.noLabel,
                           maxLines: 1, overflow: TextOverflow.ellipsis),
                       subtitle: Text(output.description, maxLines: 1,
                           overflow: TextOverflow.ellipsis),

@@ -111,7 +111,7 @@ class _StreamRow extends StatelessWidget {
               for (final output in outputs)
                 DropdownMenuItem(
                   value: output.key,
-                  child: Text(controller.displayName(output),
+                  child: Text(controller.displayName(output) ?? l.noLabel,
                       maxLines: 1, overflow: TextOverflow.ellipsis),
                 ),
             ],

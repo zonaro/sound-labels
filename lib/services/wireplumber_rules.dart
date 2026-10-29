@@ -27,7 +27,7 @@ class WirePlumberRules {
 
   static String _quote(String input) {
     if (RegExp(r'[\x00-\x1f\x7f]').hasMatch(input)) {
-      throw const FormatException('Invalid control character in audio property');
+      throw FormatException('Invalid control character in audio property');
     }
     return '"${input.replaceAll('\\', '\\\\').replaceAll('"', '\\"')}"';
   }
@@ -36,17 +36,17 @@ class WirePlumberRules {
     try {
       final result = await Process.run('wireplumber', ['--version']);
       if (result.exitCode != 0) {
-        throw const StateError('WirePlumber was not detected');
+        throw StateError('WirePlumber was not detected');
       }
       final match = RegExp(r'(\d+)\.(\d+)').firstMatch(result.stdout.toString());
-      if (match == null) throw const StateError('WirePlumber version unknown');
+      if (match == null) throw StateError('WirePlumber version unknown');
       final major = int.parse(match.group(1)!);
       final minor = int.parse(match.group(2)!);
       if (major == 0 && minor < 5) {
-        throw const StateError('WirePlumber 0.5+ is required');
+        throw StateError('WirePlumber 0.5+ is required');
       }
     } on ProcessException {
-      throw const StateError('WirePlumber command is unavailable');
+      throw StateError('WirePlumber command is unavailable');
     }
   }
 

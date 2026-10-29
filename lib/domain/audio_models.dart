@@ -103,6 +103,12 @@ enum DeviceSymbol {
   microphone,
   bluetooth,
   usb,
+  gamepad,
+  soundbar,
+  lineOut,
+  lineIn,
+  equalizer,
+  instrument,
   generic,
 }
 
@@ -130,6 +136,31 @@ DeviceSymbol suggestedSymbol(AudioEndpoint endpoint) {
   if (value.contains('usb')) return DeviceSymbol.usb;
   if (value.contains('speaker') || value.contains('analog')) {
     return DeviceSymbol.speakers;
+  }
+  if (value.contains('gamepad') || value.contains('joystick') || value.contains('controlador')) {
+    return DeviceSymbol.gamepad;
+  }
+  if (value.contains('soundbar') || value.contains('barra de som')) {
+    return DeviceSymbol.soundbar;
+  }
+  if (value.contains('line out') || value.contains('line-out') ||
+      value.contains('saída de linha') || value.contains('saida de linha')) {
+    return DeviceSymbol.lineOut;
+  }
+  if (value.contains('line in') || value.contains('line-in') ||
+      value.contains('entrada de linha')) {
+    return DeviceSymbol.lineIn;
+  }
+  if (value.contains('equalizer') || value.contains('equaliser') ||
+      value.contains('equalizador') || value.contains('ecualizador')) {
+    return DeviceSymbol.equalizer;
+  }
+  if (value.contains('midi') || value.contains('synth') ||
+      value.contains('teclado') || value.contains('piano') ||
+      value.contains('guitarra') || value.contains('guitar') ||
+      value.contains('bateria') || value.contains('drum') ||
+      value.contains('instrumento') || value.contains('instrument')) {
+    return DeviceSymbol.instrument;
   }
   if (endpoint.direction == AudioDirection.input) {
     return DeviceSymbol.microphone;

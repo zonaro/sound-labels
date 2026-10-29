@@ -46,7 +46,7 @@ class _ProfileRow extends StatelessWidget {
   String _label(String? key) {
     if (key == null) return '—';
     final endpoint = controller.snapshot?.endpointForKey(key);
-    return endpoint == null ? key : controller.displayName(endpoint);
+    return endpoint == null ? key : (controller.displayName(endpoint) ?? key);
   }
 
   @override
@@ -287,7 +287,7 @@ class _ProfileEditorState extends State<_ProfileEditor> {
             decoration: InputDecoration(labelText: l.profileOutput),
             items: [for (final output in outputs)
               DropdownMenuItem(value: output.key,
-                child: Text(widget.controller.displayName(output), overflow: TextOverflow.ellipsis))],
+                child: Text(widget.controller.displayName(output) ?? l.noLabel, overflow: TextOverflow.ellipsis))],
             onChanged: (value) => setState(() => outputKey = value),
           ),
           const SizedBox(height: 12),
@@ -297,7 +297,7 @@ class _ProfileEditorState extends State<_ProfileEditor> {
             decoration: InputDecoration(labelText: l.profileInput),
             items: [for (final input in inputs)
               DropdownMenuItem(value: input.key,
-                child: Text(widget.controller.displayName(input), overflow: TextOverflow.ellipsis))],
+                child: Text(widget.controller.displayName(input) ?? l.noLabel, overflow: TextOverflow.ellipsis))],
             onChanged: (value) => setState(() => inputKey = value),
           ),
           const SizedBox(height: 12),

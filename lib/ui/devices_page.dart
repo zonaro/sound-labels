@@ -118,7 +118,7 @@ class _DeviceRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Wrap(crossAxisAlignment: WrapCrossAlignment.center, spacing: 8, children: [
-                Text(controller.displayName(endpoint),
+                Text(controller.displayName(endpoint) ?? l.noLabel,
                     style: const TextStyle(fontWeight: FontWeight.w700)),
                 if (isDefault) Container(
                   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),

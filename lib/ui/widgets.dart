@@ -15,6 +15,12 @@ IconData iconForSymbol(DeviceSymbol symbol) => switch (symbol) {
       DeviceSymbol.microphone => Icons.mic_none_outlined,
       DeviceSymbol.bluetooth => Icons.bluetooth,
       DeviceSymbol.usb => Icons.usb_outlined,
+      DeviceSymbol.gamepad => Icons.videogame_asset_outlined,
+      DeviceSymbol.soundbar => Icons.speaker_group_outlined,
+      DeviceSymbol.lineOut => Icons.arrow_right_outlined,
+      DeviceSymbol.lineIn => Icons.arrow_left_outlined,
+      DeviceSymbol.equalizer => Icons.equalizer_outlined,
+      DeviceSymbol.instrument => Icons.music_note_outlined,
       DeviceSymbol.generic => Icons.graphic_eq,
     };
 
@@ -28,6 +34,12 @@ String symbolLabel(AppLocalizations l, DeviceSymbol symbol) => switch (symbol) {
       DeviceSymbol.microphone => l.microphone,
       DeviceSymbol.bluetooth => l.bluetooth,
       DeviceSymbol.usb => l.usb,
+      DeviceSymbol.gamepad => l.gamepad,
+      DeviceSymbol.soundbar => l.soundbar,
+      DeviceSymbol.lineOut => l.lineOut,
+      DeviceSymbol.lineIn => l.lineIn,
+      DeviceSymbol.equalizer => l.equalizer,
+      DeviceSymbol.instrument => l.instrument,
       DeviceSymbol.generic => l.generic,
     };
 

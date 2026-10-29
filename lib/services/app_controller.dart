@@ -79,7 +79,7 @@ class AppController extends ChangeNotifier with WidgetsBindingObserver {
         if (previous.defaultSinkName != next.defaultSinkName) {
           final endpoint = next.endpointForName(next.defaultSinkName);
           if (endpoint != null) {
-            await desktop.notifyDeviceChanged(displayName(endpoint));
+            await desktop.notifyDeviceChanged(displayName(endpoint) ?? endpoint.description);
           }
         }
       }
@@ -91,9 +91,14 @@ class AppController extends ChangeNotifier with WidgetsBindingObserver {
     }
   }
 
-  String displayName(AudioEndpoint endpoint) {
+  String? displayName(AudioEndpoint endpoint) {
     final alias = data.overrides[endpoint.key]?.alias;
-    return alias != null && alias.isNotEmpty ? alias : endpoint.description;
+    final raw = (alias != null && alias.isNotEmpty) ? alias : endpoint.description;
+    final trimmed = raw.trim();
+    if (trimmed.isEmpty || trimmed.toLowerCase() == 'null') {
+      return null;
+    }
+    return trimmed;
   }
 
   DeviceSymbol displaySymbol(AudioEndpoint endpoint) {
